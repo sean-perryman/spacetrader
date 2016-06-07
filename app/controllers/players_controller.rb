@@ -24,8 +24,14 @@ class PlayersController < ApplicationController
   # POST /players
   # POST /players.json
   def create
+    #@s = player_params[:Ship]
+    puts '----------------'
+    puts params[:player]
+    params[:player].delete(:Ship)
+    puts params[:player]
+    puts '----------------'
     @player = Player.new(player_params)
-    @player_ship = Player_Ship.new(@player.id, @player.Ship)
+    
     respond_to do |format|
       if @player.save
         format.html { redirect_to @player, notice: 'Player was successfully created.' }

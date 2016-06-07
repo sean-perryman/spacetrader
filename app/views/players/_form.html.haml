@@ -3,6 +3,6 @@
   .form-inputs
     = f.input :Name
     = f.input :Credits
-    = f.input :Ship, :collection => Ship.all
+    = f.input :Ship, :collection => Ship.all, :label_method => :Name
   .form-actions
     = f.button :submit

@@ -1,7 +1,8 @@
 class Player < ActiveRecord::Base
-	has_one :ship, :through => :player_ships
+	has_one :player_ship
+	has_one :ship, :through => :player_ship
 
 	def Ship
-		Ship.all
+
 	end
 end
