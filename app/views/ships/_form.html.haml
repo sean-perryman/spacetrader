@@ -1,0 +1,7 @@
+= simple_form_for(@ship) do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :Name
+    = f.input :Base_Cargo
+  .form-actions
+    = f.button :submit

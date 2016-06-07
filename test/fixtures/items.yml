@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  Name: MyString
+  Base_Price: 1
+
+two:
+  Name: MyString
+  Base_Price: 1
