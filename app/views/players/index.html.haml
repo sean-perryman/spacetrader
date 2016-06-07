@@ -9,7 +9,11 @@
     %tr
       %td= player.Name
       %td= player.Credits
-      %td= player.ship.name
+      %td
+        - if player.ship
+          = player.ship.Name
+        - else
+          None
       %td= link_to 'Show', player, :class => "btn btn-default"
       %td= link_to 'Edit', edit_player_path(player), :class => "btn btn-default"
       %td= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger"

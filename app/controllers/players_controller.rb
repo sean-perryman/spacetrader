@@ -24,16 +24,21 @@ class PlayersController < ApplicationController
   # POST /players
   # POST /players.json
   def create
-    #@s = player_params[:Ship]
-    puts '----------------'
-    puts params[:player]
+    #Temporarily store Ship ID
+    @ps_ship = player_params[:Ship]
+
+    #Remove the :Ship object from the player_params before writing
     params[:player].delete(:Ship)
-    puts params[:player]
-    puts '----------------'
-    @player = Player.new(player_params)
     
+    #Use the cleaned params to create a new player object
+    @player = Player.new(player_params)
     respond_to do |format|
       if @player.save
+        #Write the player <> ship association
+        @ps = PlayerShip.new
+        @ps.attributes = {player: @player, ship: Ship.find(@ps_ship)}
+        @ps.save
+
         format.html { redirect_to @player, notice: 'Player was successfully created.' }
         format.json { render :show, status: :created, location: @player }
       else
@@ -47,7 +52,20 @@ class PlayersController < ApplicationController
   # PATCH/PUT /players/1.json
   def update
     respond_to do |format|
+      
+      #Temporarily store Ship ID
+      @ps_ship = player_params[:Ship]
+      
+      #Remove the :Ship object from the player_params before writing
+      params[:player].delete(:Ship)
+      
       if @player.update(player_params)
+        
+        #Write the player <> ship association
+        @ps = PlayerShip.where(:player => @player).first
+        @ps.attributes = {player: @player, ship: Ship.find(@ps_ship)}
+        @ps.save
+
         format.html { redirect_to @player, notice: 'Player was successfully updated.' }
         format.json { render :show, status: :ok, location: @player }
       else
