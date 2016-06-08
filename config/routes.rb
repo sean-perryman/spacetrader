@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :player_ships
+
   resources :ships
 
   resources :players
