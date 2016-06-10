@@ -35,4 +35,12 @@ class PlayerShip < ActiveRecord::Base
 			false # At or beyond capacity
 		end
 	end
+
+	def pre_cap_check(quantity)
+		if cargo_capacity > quantity.to_i + cargo_total
+			true
+		else
+			false
+		end
+	end
 end

@@ -28,55 +28,56 @@ describe PlayerShip do
 		expect(player_ship.errors[:cargo_mod]).to include("can't be blank")
 	end
 
-	it "returns true when cargo capacity has free space" do
-		ship = Ship.create(
-			name: 'Test',
-			base_cargo: '1')
+	describe "model methods" do
+		before :each do
+			@ship = Ship.create( #Use create when you need test data to persist.
+				name: 'Test',
+				base_cargo: '1')
 
-		item = Item.create(
-			name: 'Test',
-			base_price: '1')
+			@player = Player.create(
+				name: 'Test',
+				credits: '0')
 
-		player = Player.create(
-			name: 'Test',
-			credits: '0')
+			@player_ship = PlayerShip.create(
+					ship_id: @ship.id,
+					player_id: @player.id,
+					cargo_mod: '2')
+		end
 
-		player_ship = PlayerShip.create(
-				ship_id: ship.id,
-				player_id: player.id,
-				cargo_mod: '2')
+		context 'cargo capacity within limits' do
+			it "returns true" do
+				item = Item.create(
+					name: 'Test',
+					base_price: '1')
 
-		ship_item = ShipItem.create(
-			ship_id: ship.id,
-			item_id: item.id,
-			quantity: '1')
+				ship_item = ShipItem.create(
+					ship_id: @ship.id,
+					item_id: item.id,
+					quantity: '1')
 
-		expect(player_ship.capacity_check).to be_truthy
-	end
+				expect(@player_ship.capacity_check).to be_truthy
+			end
+		end
 
-	it 'returns false when cargo capacity is met' do 
-		ship = Ship.create( #Use create when you need test data to persist.
-			name: 'Test',
-			base_cargo: '1')
+		context 'cargo capacity exceeds limits' do
+			it 'returns false' do 
+				item = Item.create(
+					name: 'Test',
+					base_price: '1')
 
-		item = Item.create(
-			name: 'Test',
-			base_price: '1')
+				ship_item = ShipItem.create(
+					ship_id: @ship.id,
+					item_id: item.id,
+					quantity: '5')
 
-		player = Player.create(
-			name: 'Test',
-			credits: '0')
+				expect(@player_ship.capacity_check).to be_falsey
+			end
+		end
 
-		player_ship = PlayerShip.create(
-				ship_id: ship.id,
-				player_id: player.id,
-				cargo_mod: '2')
-
-		ship_item = ShipItem.create(
-			ship_id: ship.id,
-			item_id: item.id,
-			quantity: '5')
-
-		expect(player_ship.capacity_check).to be_falsey
+		context 'player and ship method' do
+			it 'returns the complete player and ship name strings, concatenated by a colon' do
+				expect(@player_ship.player_and_ship).to eq 'Test: Test'
+			end
+		end
 	end
 end
