@@ -28,7 +28,7 @@ before_action :set_ship_item, only: [:show, :edit, :update, :destroy]
 
     respond_to do |format|
       if @ship_item.save
-        format.html { redirect_to ship_item_path, notice: 'Ship item was successfully created.' }
+        format.html { redirect_to player_ships_path, notice: 'Ship item was successfully created.' }
         format.json { render :show, status: :created, location: ship_items_path }
       else
         format.html { render :new }
@@ -56,7 +56,7 @@ before_action :set_ship_item, only: [:show, :edit, :update, :destroy]
   def destroy
     @ship_item.destroy
     respond_to do |format|
-      format.html { redirect_to player_ships_path, notice: 'Ship was successfully destroyed.' }
+      format.html { redirect_to player_ships_path, notice: 'Ship item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

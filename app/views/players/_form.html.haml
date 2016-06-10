@@ -1,8 +1,8 @@
 = simple_form_for(@player) do |f|
   = f.error_notification
   .form-inputs
-    = f.input :Name
-    = f.input :Credits
-    = f.input :Ship, :collection => Ship.all, :label_method => :Name
+    = f.input :name
+    = f.input :credits
+    = f.input :ship, :collection => Ship.all, :label_method => :name
   .form-actions
     = f.button :submit

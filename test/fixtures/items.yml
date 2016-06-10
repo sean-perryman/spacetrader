@@ -2,8 +2,8 @@
 
 one:
   Name: MyString
-  Base_Price: 1
+  base_price: 1
 
 two:
   Name: MyString
-  Base_Price: 1
+  base_price: 1

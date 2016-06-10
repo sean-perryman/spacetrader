@@ -2,8 +2,8 @@
 
 one:
   Name: MyString
-  Base_Cargo: 1
+  base_cargo: 1
 
 two:
   Name: MyString
-  Base_Cargo: 1
+  base_cargo: 1

@@ -1,1 +1,1 @@
-json.extract! @planet, :id, :Name, :created_at, :updated_at
+json.extract! @planet, :id, :name, :created_at, :updated_at

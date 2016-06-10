@@ -1,8 +1,8 @@
 class CreatePlayers < ActiveRecord::Migration
   def change
     create_table :players do |t|
-      t.string :Name
-      t.integer :Credits
+      t.string :name
+      t.integer :credits
 
       t.timestamps null: false
     end

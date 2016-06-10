@@ -1,0 +1,7 @@
+= simple_form_for(@player_ship) do |f|
+	.form-inputs
+		= f.input :ship_id, :collection => Ship.all, :label_method => :name, :label => "Ship name"
+		= f.input :player_id, :collection => Player.all, :label_method => :name, :label => "Player name"
+		= f.input :cargo_mod
+	.form-actions
+		= f.button :submit

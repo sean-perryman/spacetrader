@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(version: 20160607170731) do
   enable_extension "plpgsql"
 
   create_table "items", force: :cascade do |t|
-    t.string   "Name"
-    t.integer  "Base_Price"
+    t.string   "name"
+    t.integer  "base_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20160607170731) do
   add_index "planet_items", ["planet_id"], name: "index_planet_items_on_planet_id", using: :btree
 
   create_table "planets", force: :cascade do |t|
-    t.string   "Name"
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -52,8 +52,8 @@ ActiveRecord::Schema.define(version: 20160607170731) do
   add_index "player_ships", ["ship_id"], name: "index_player_ships_on_ship_id", using: :btree
 
   create_table "players", force: :cascade do |t|
-    t.string   "Name"
-    t.integer  "Credits"
+    t.string   "name"
+    t.integer  "credits"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -70,8 +70,8 @@ ActiveRecord::Schema.define(version: 20160607170731) do
   add_index "ship_items", ["ship_id"], name: "index_ship_items_on_ship_id", using: :btree
 
   create_table "ships", force: :cascade do |t|
-    t.string   "Name"
-    t.integer  "Base_Cargo"
+    t.string   "name"
+    t.integer  "base_cargo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

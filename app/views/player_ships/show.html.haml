@@ -1,10 +1,10 @@
 %h3
-	%strong Ship Name:
-	= @player_ship.ship.Name
+	%strong Ship name:
+	= @player_ship.ship.name
 
 %h3
-	%strong Player Name:
-	= @player_ship.player.Name
+	%strong Player name:
+	= @player_ship.player.name
 
 %h3
 	%strong Cargo Capacity:
@@ -14,11 +14,11 @@
 
 %table.table.table-striped
 	%tr
-		%th Item Name
+		%th Item name
 		%th Quantity
 	- @ship_items.each do |item|
 		%tr
-			%td= Item.find(item.item_id).Name
+			%td= Item.find(item.item_id).name
 			%td= item.quantity
 
 %h6 Cargo Capacity: #{ @player_ship.cargo_capacity }

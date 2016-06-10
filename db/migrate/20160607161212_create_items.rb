@@ -1,8 +1,8 @@
 class CreateItems < ActiveRecord::Migration
   def change
     create_table :items do |t|
-      t.string :Name
-      t.integer :Base_Price
+      t.string :name
+      t.integer :base_price
 
       t.timestamps null: false
     end

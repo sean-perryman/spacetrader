@@ -18,7 +18,7 @@ class ShipsControllerTest < ActionController::TestCase
 
   test "should create ship" do
     assert_difference('Ship.count') do
-      post :create, ship: { Base_Cargo: @ship.Base_Cargo, Name: @ship.Name }
+      post :create, ship: { base_cargo: @ship.base_cargo, Name: @ship.Name }
     end
 
     assert_redirected_to ship_path(assigns(:ship))
@@ -35,7 +35,7 @@ class ShipsControllerTest < ActionController::TestCase
   end
 
   test "should update ship" do
-    patch :update, id: @ship, ship: { Base_Cargo: @ship.Base_Cargo, Name: @ship.Name }
+    patch :update, id: @ship, ship: { base_cargo: @ship.base_cargo, Name: @ship.Name }
     assert_redirected_to ship_path(assigns(:ship))
   end
 

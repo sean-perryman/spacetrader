@@ -1,7 +1,7 @@
 class CreatePlanets < ActiveRecord::Migration
   def change
     create_table :planets do |t|
-      t.string :Name
+      t.string :name
 
       t.timestamps null: false
     end

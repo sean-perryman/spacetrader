@@ -1,10 +1,10 @@
 %p#notice= notice
 %p
-  %strong Name:
-  = @ship.Name
+  %strong name:
+  = @ship.name
 %p
   %strong Base cargo:
-  = @ship.Base_Cargo
+  = @ship.base_cargo
 = link_to 'Edit', edit_ship_path(@ship)
 |
 = link_to 'Back', ships_path

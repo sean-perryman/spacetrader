@@ -1,11 +1,11 @@
 %h1 Listing Planets
 %table.table.table-striped
   %tr
-    %th Name
+    %th name
     %th{:colspan => "3"}
   - @planets.each do |planet|
     %tr
-      %td= planet.Name
+      %td= planet.name
       %td= link_to 'Show', planet, :class => "btn btn-default"
       %td= link_to 'Edit', edit_planet_path(planet), :class => "btn btn-default"
       %td= link_to 'Destroy', planet, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger"

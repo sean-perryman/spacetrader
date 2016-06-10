@@ -25,19 +25,22 @@ class PlayersController < ApplicationController
   # POST /players.json
   def create
     #Temporarily store Ship ID
-    @ps_ship = player_params[:Ship]
+    @ps_ship = player_params[:ship]
 
-    #Remove the :Ship object from the player_params before writing
-    params[:player].delete(:Ship)
+    #Remove the :ship object from the player_params before writing
+    params[:player].delete(:ship)
     
     #Use the cleaned params to create a new player object
     @player = Player.new(player_params)
     respond_to do |format|
       if @player.save
-        #Write the player <> ship association
-        @ps = PlayerShip.new
-        @ps.attributes = {player: @player, ship: Ship.find(@ps_ship)}
-        @ps.save
+        
+        #Write the player <> ship association if populated
+        if @ps_ship
+          @ps = PlayerShip.new
+          @ps.attributes = {player: @player, ship: Ship.find(@ps_ship)}
+          @ps.save
+        end
 
         format.html { redirect_to @player, notice: 'Player was successfully created.' }
         format.json { render :show, status: :created, location: @player }
@@ -54,17 +57,23 @@ class PlayersController < ApplicationController
     respond_to do |format|
       
       #Temporarily store Ship ID
-      @ps_ship = player_params[:Ship]
+      @ps_ship = player_params[:ship]
       
-      #Remove the :Ship object from the player_params before writing
-      params[:player].delete(:Ship)
+      #Remove the :ship object from the player_params before writing
+      params[:player].delete(:ship)
       
       if @player.update(player_params)
-        
-        #Write the player <> ship association
-        @ps = PlayerShip.where(:player => @player).first
-        @ps.attributes = {player: @player, ship: Ship.find(@ps_ship)}
-        @ps.save
+        if @ps_ship #Write the player <> ship association if populatd
+          if PlayerShip.where(:player => @player).first
+            @ps = PlayerShip.where(:player => @player).first
+            @ps.attributes = {player: @player, ship: Ship.find(@ps_ship)}
+            @ps.save
+          else
+            @ps = PlayerShip.new
+            @ps.attributes = {player: @player, ship: Ship.find(@ps_ship)}
+            @ps.save
+          end
+        end
 
         format.html { redirect_to @player, notice: 'Player was successfully updated.' }
         format.json { render :show, status: :ok, location: @player }
@@ -93,6 +102,6 @@ class PlayersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
-      params.require(:player).permit(:Name, :Credits, :Ship)
+      params.require(:player).permit(:name, :credits, :ship)
     end
 end

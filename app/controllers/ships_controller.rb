@@ -69,6 +69,6 @@ class ShipsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ship_params
-      params.require(:ship).permit(:Name, :Base_Cargo)
+      params.require(:ship).permit(:name, :base_cargo)
     end
 end
