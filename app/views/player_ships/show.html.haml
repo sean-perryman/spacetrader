@@ -1,2 +1,22 @@
-%h1 PlayerShips#show
-%p Find me in app/views/player_ships/show.html.erb
+%h3
+	%strong Ship Name:
+	= @player_ship.ship.Name
+
+%h3
+	%strong Player Name:
+	= @player_ship.player.Name
+
+%h3
+	%strong Cargo Capacity:
+	= @player_ship.cargo_total
+%hr
+%h5 Items On Board
+
+%table.table.table-striped
+	%tr
+		%th Item Name
+		%th Quantity
+	- @ship_items.each do |item|
+		%tr
+			%td item.item.Name
+			%td item.quantity
