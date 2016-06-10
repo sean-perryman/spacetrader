@@ -9,7 +9,7 @@
     %tr
       %td= player_ship.player.Name
       %td= player_ship.ship.Name
-      %td= player_ship.cargo_total
+      %td= player_ship.cargo_capacity
       %td= link_to 'Show', player_ship, :class => "btn btn-default"
       %td= link_to 'Edit', edit_player_ship_path(player_ship), :class => "btn btn-default"
       %td= link_to 'Destroy', player_ship, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger"

@@ -1,14 +1,10 @@
 Rails.application.routes.draw do
+  resources :ship_items
   resources :player_ships
-
   resources :ships
-
   resources :players
-
   resources :planets
-
   resources :items
-
   root 'home#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -18,5 +18,11 @@
 		%th Quantity
 	- @ship_items.each do |item|
 		%tr
-			%td item.item.Name
-			%td item.quantity
+			%td= Item.find(item.item_id).Name
+			%td= item.quantity
+
+%h6 Cargo Capacity: #{ @player_ship.cargo_capacity }
+%h6 Cargo Total: #{ @player_ship.cargo_total }
+%h6 Within Limits: #{ @player_ship.capacity_check }
+
+=link_to "Add new item", new_ship_item_path(@player_ship), :class => "btn btn-success"
