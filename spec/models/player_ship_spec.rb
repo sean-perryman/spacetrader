@@ -44,36 +44,6 @@ describe PlayerShip do
 					cargo_mod: '2')
 		end
 
-		context 'cargo capacity within limits' do
-			it "returns true" do
-				item = Item.create(
-					name: 'Test',
-					base_price: '1')
-
-				ship_item = ShipItem.create(
-					ship_id: @ship.id,
-					item_id: item.id,
-					quantity: '1')
-
-				expect(@player_ship.capacity_check).to be_truthy
-			end
-		end
-
-		context 'cargo capacity exceeds limits' do
-			it 'returns false' do 
-				item = Item.create(
-					name: 'Test',
-					base_price: '1')
-
-				ship_item = ShipItem.create(
-					ship_id: @ship.id,
-					item_id: item.id,
-					quantity: '5')
-
-				expect(@player_ship.capacity_check).to be_falsey
-			end
-		end
-
 		context 'player and ship method' do
 			it 'returns the complete player and ship name strings, concatenated by a colon' do
 				expect(@player_ship.player_and_ship).to eq 'Test: Test'

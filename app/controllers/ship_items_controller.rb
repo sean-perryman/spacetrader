@@ -24,24 +24,16 @@ before_action :set_ship_item, only: [:show, :edit, :update, :destroy]
   # POST /ships
   # POST /ships.json
   def create
-    @ship = ship_item_params[:ship_id]
-    @quantity = ship_item_params[:quantity]
+    @ship_item = ShipItem.new(ship_item_params)
 
-    if PlayerShip.find(@ship).pre_cap_check(@quantity)
-
-      @ship_item = ShipItem.new(ship_item_params)
-
-      respond_to do |format|
-        if @ship_item.save
-          format.html { redirect_to player_ships_path, notice: 'Ship item was successfully created.' }
-          format.json { render :show, status: :created, location: ship_items_path }
-        else
-          format.html { render :new }
-          format.json { render json: @ship_item.errors, status: :unprocessable_entity }
-        end
+    respond_to do |format|
+      if @ship_item.save
+        format.html { redirect_to player_ships_path, notice: 'Ship item was successfully created.' }
+        format.json { render :show, status: :created, location: ship_items_path }
+      else
+        format.html { render :new }
+        format.json { render json: @ship_item.errors, status: :unprocessable_entity }
       end
-    else
-      redirect_to new_ship_item_path, notice: "Cargo capacity exceeded."
     end
   end
 
